@@ -7,6 +7,7 @@ public class MouseLook : MonoBehaviour
 
     float xRotation = 0f;
 
+
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -28,3 +29,4 @@ public class MouseLook : MonoBehaviour
         playerBody.Rotate(Vector3.up * mouseX);
     }
 }
+

@@ -1628,6 +1628,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fpsCamera: {fileID: 1233507302}
   topDownCamera: {fileID: 330585545}
+  movement: {fileID: 1833396012}
+  mouseLook: {fileID: 1233507300}
+  player: {fileID: 1833396011}
 --- !u!4 &1159622413
 Transform:
   m_ObjectHideFlags: 0
@@ -2303,7 +2306,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
+  m_VoxelSize: 0.06666667
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 90497a74f1486a743afd599d1c52d06b, type: 2}
   m_BuildHeightMesh: 0
@@ -3056,6 +3059,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+  useWorldMovement: 0
 --- !u!1 &1895005183
 GameObject:
   m_ObjectHideFlags: 0
