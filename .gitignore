@@ -361,3 +361,23 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# ===== UNITY =====
+Library/
+Temp/
+Obj/
+Build/
+Builds/
+Logs/
+UserSettings/
+
+# Unity cache
+MemoryCaptures/
+Recordings/
+
+# Asset meta (KEEP these!)
+!*.meta
+
+# Ignore auto-generated VS files
+.vscode/
+.idea/

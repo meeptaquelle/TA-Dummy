@@ -1,0 +1,3 @@
+repository "TA Dummy/TA Dummy@18967017030909@cloud"
+  path "/"
+    smartbranch "/main"
