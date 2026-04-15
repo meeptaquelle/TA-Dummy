@@ -7,7 +7,7 @@ public class SharedBlackboard : MonoBehaviour
 
     public bool playerDetected;
     public Vector3 lastSeenPlayerPos;
-    public float sharedStamina = 5f;
+    public float sharedStamina = 50f;
 
     public List<int> flankerSlots = new List<int>(); // tracks claimed slot indices
 
