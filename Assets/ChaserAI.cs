@@ -44,7 +44,7 @@ public class ChaserAI : MonoBehaviour
                 if (CanSeePlayer())
                 {
                     SharedBlackboard.Instance.playerDetected = true;
-                    SharedBlackboard.Instance.sharedStamina = 200f;
+                    SharedBlackboard.Instance.sharedStamina = 30f;
                     currentState = State.Chase;
                 }
                 break;
