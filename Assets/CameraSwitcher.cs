@@ -46,6 +46,9 @@ public class CameraSwitcher : MonoBehaviour
         mouseLook.enabled = false;
         movement.useWorldMovement = true;
 
+        // reset camera tilt
+        mouseLook.transform.localRotation = Quaternion.identity;
+
         LockCursor(false);
     }
 
