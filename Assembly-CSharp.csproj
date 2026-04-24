@@ -61,14 +61,18 @@
     <Analyzer Include="D:\Unity\6000.0.65f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\NodeReservationSystem.cs" />
     <Compile Include="Assets\SharedBlackboard.cs" />
     <Compile Include="Assets\GridCell.cs" />
     <Compile Include="Assets\StaminaUI.cs" />
     <Compile Include="Assets\CameraSwitcher.cs" />
     <Compile Include="Assets\FSM.cs" />
+    <Compile Include="Assets\Node.cs" />
+    <Compile Include="Assets\NodePathfinding.cs" />
     <Compile Include="Assets\EnemyController.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\PlayerMovement.cs" />
+    <Compile Include="Assets\NodeGraphBuilder.cs" />
     <Compile Include="Assets\MouseLook.cs" />
     <Compile Include="Assets\ChaserAI.cs" />
   </ItemGroup>
