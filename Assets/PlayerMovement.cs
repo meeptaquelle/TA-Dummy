@@ -7,16 +7,22 @@ public class PlayerMovement : MonoBehaviour
 
     Rigidbody rb;
 
+    float h, v;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
     }
 
+    void Update()
+    {
+        // Read input here (important)
+        h = Input.GetAxisRaw("Horizontal");
+        v = Input.GetAxisRaw("Vertical");
+    }
+
     void FixedUpdate()
     {
-        float h = Input.GetAxis("Horizontal");
-        float v = Input.GetAxis("Vertical");
-
         Vector3 move;
 
         if (useWorldMovement)
@@ -24,8 +30,12 @@ public class PlayerMovement : MonoBehaviour
         else
             move = transform.right * h + transform.forward * v;
 
-        rb.MovePosition(rb.position + move * speed * Time.fixedDeltaTime);
-
         move = move.normalized;
+
+        // Apply velocity instead of forcing position
+        Vector3 velocity = move * speed;
+        velocity.y = rb.linearVelocity.y; // keep gravity if needed
+
+        rb.linearVelocity = velocity;
     }
 }

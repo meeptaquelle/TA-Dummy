@@ -1,6 +1,8 @@
-﻿using UnityEngine;
+﻿// chaserai.cs
+using UnityEngine;
 using UnityEngine.AI;
 using System.Collections.Generic;
+using UnityEditor;
 
 /// <summary>
 /// Autonomous chaser agent. Coordinates with siblings only via SharedBlackboard.
@@ -323,6 +325,64 @@ public class ChaserAI : MonoBehaviour
         // Repulsion radius
         Gizmos.color = new Color(0f, 1f, 1f, 0.15f);
         Gizmos.DrawWireSphere(transform.position, repulsionRadius);
+
+        // ── Stamina Bar ───────────────────────────────────────────────
+        if (!Application.isPlaying) return;
+
+        var bb = SharedBlackboard.Instance;
+        if (bb == null) return;
+
+        Vector3 barOrigin = transform.position + Vector3.up * 2.5f;
+        float barWidth = 1.2f;
+        float barHeight = 0.15f;
+        float fill = Mathf.Clamp01(bb.sharedStamina / 30f); // 30f = max stamina
+
+        // Background (dark red)
+        Handles.color = new Color(0.3f, 0f, 0f);
+        Handles.DrawSolidRectangleWithOutline(
+            BuildRect(barOrigin, barWidth, barHeight),
+            new Color(0.3f, 0f, 0f),
+            Color.clear
+        );
+
+        // Fill (green → yellow → red based on fill amount)
+        Color fillColor = Color.Lerp(Color.red, Color.green, fill);
+        Handles.DrawSolidRectangleWithOutline(
+            BuildRect(barOrigin, barWidth * fill, barHeight),
+            fillColor,
+            Color.clear
+        );
+
+        // Outline
+        Handles.color = Color.white;
+        Handles.DrawSolidRectangleWithOutline(
+            BuildRect(barOrigin, barWidth, barHeight),
+            Color.clear,
+            Color.white
+        );
+
+        // Role label above bar
+        GUIStyle labelStyle = new GUIStyle();
+        labelStyle.normal.textColor = myRole == SharedBlackboard.AgentRole.Rusher
+            ? Color.red : Color.magenta;
+        labelStyle.fontStyle = FontStyle.Bold;
+        labelStyle.fontSize = 11;
+        labelStyle.alignment = TextAnchor.MiddleCenter;
+
+        Handles.Label(barOrigin + Vector3.up * 0.25f, myRole.ToString(), labelStyle);
+
+        Vector3[] BuildRect(Vector3 center, float width, float height)
+        {
+            float hw = width * 0.5f;
+            float hh = height * 0.5f;
+            return new Vector3[]
+            {
+        center + new Vector3(-hw, -hh, 0),
+        center + new Vector3(-hw,  hh, 0),
+        center + new Vector3( hw,  hh, 0),
+        center + new Vector3( hw, -hh, 0),
+            };
+        }
     }
 
     void OnDrawGizmosSelected()
@@ -349,4 +409,9 @@ public class ChaserAI : MonoBehaviour
             Gizmos.DrawWireSphere(agent.destination, 0.4f);
         }
     }
+
+    public string DebugState => currentState.ToString();
+    public float DebugDistToPlayer => player != null
+        ? Vector3.Distance(transform.position, player.position)
+        : -1f;
 }
